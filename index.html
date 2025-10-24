@@ -94,9 +94,9 @@ from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
     const auth = getAuth(app);
     let currentUser = null;
 
-    const months = ["September", "October", "November", "December", "January"];
-    const daysInMonth = [30, 31, 30, 31, 31];
-    const startDays = [1, 3, 5, 0, 3];
+  const months = ["September", "October", "November", "December", "January"];
+  const daysInMonth = [30, 31, 30, 31, 31];
+  const startDays = [1, 3, 6, 1, 4];
     const calendarContainer = document.getElementById("calendar");
 
     let totalRendered = 0;
@@ -289,7 +289,6 @@ function validateEmail(email) {
       return diff > 0 ? diff : 0;
     }
 
-    // Helper: convert decimal hours (e.g. 2.5) into "Xh Ym" string (e.g. "2h 30m").
     function formatHours(decimalHours) {
       if (typeof decimalHours !== 'number' || isNaN(decimalHours)) return '';
       const totalMinutes = Math.round(decimalHours * 60);
@@ -452,7 +451,6 @@ function validateEmail(email) {
           return;
           }
           
-          // Rest of the function
           dayRecords[key].planned = (dayRecords[key].planned || 0) + hours;
           dayRecords[key].plannedRanges.push(range);
           totalPlanned += hours;
@@ -538,7 +536,7 @@ function validateEmail(email) {
       }
     });
 
-    // Auth functions
+
 function toggleAuthElements(loggedIn) {
   const loginForm = document.getElementById("loginForm");
   const userInfo = document.getElementById("userInfo");
