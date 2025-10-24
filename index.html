@@ -233,9 +233,9 @@ function validateEmail(email) {
     }
 
     function updateSummary() {
-      document.getElementById("plannedTotal").textContent = totalPlanned.toFixed(1);
-      document.getElementById("rendered").textContent = totalRendered.toFixed(1);
-      document.getElementById("remaining").textContent = Math.max(totalNeeded - totalRendered, 0).toFixed(1);
+      document.getElementById("plannedTotal").textContent = formatHours(totalPlanned);
+      document.getElementById("rendered").textContent = formatHours(totalRendered);
+      document.getElementById("remaining").textContent = formatHours(Math.max(totalNeeded - totalRendered, 0));
     }
 
    
@@ -289,7 +289,15 @@ function validateEmail(email) {
       return diff > 0 ? diff : 0;
     }
 
-   
+    // Helper: convert decimal hours (e.g. 2.5) into "Xh Ym" string (e.g. "2h 30m").
+    function formatHours(decimalHours) {
+      if (typeof decimalHours !== 'number' || isNaN(decimalHours)) return '';
+      const totalMinutes = Math.round(decimalHours * 60);
+      const h = Math.floor(totalMinutes / 60);
+      const m = totalMinutes % 60;
+      return `${h}h ${m}m`;
+    }
+
     function isTimeInRange(time) {
       const hour = parseInt(time.split(':')[0]);
       return hour >= 7 && hour < 19;
@@ -297,8 +305,8 @@ function validateEmail(email) {
 
     function updateCellDisplayStatic(key, infoDiv, cell) {
       const rec = dayRecords[key];
-      let plannedText = rec.planned > 0 ? `Planned: ${rec.planned.toFixed(1)}h<br><small>${rec.plannedRanges.join("<br>")}</small>` : "";
-      let renderedText = rec.rendered > 0 ? `Rendered: ${rec.rendered.toFixed(1)}h<br><small>${rec.renderedRanges.join("<br>")}</small>` : "";
+      let plannedText = rec.planned > 0 ? `Planned: ${formatHours(rec.planned)}<br><small>${rec.plannedRanges.join("<br>")}</small>` : "";
+      let renderedText = rec.rendered > 0 ? `Rendered: ${formatHours(rec.rendered)}<br><small>${rec.renderedRanges.join("<br>")}</small>` : "";
       infoDiv.innerHTML = plannedText + (plannedText && renderedText ? "<br>" : "") + renderedText;
       if (rec.planned > 0) cell.classList.add("planned");
       if (rec.rendered > 0) cell.classList.add("rendered");
@@ -358,8 +366,8 @@ function validateEmail(email) {
       entry.className = "log-item";
       entry.dataset.type = type;
       entry.dataset.hours = hours;
-      entry.dataset.range = range;
-      entry.innerHTML = `${month} ${date} — ${type}: ${hours.toFixed(1)}h (${range}) <button class="undo-btn">Undo</button>`;
+  entry.dataset.range = range;
+  entry.innerHTML = `${month} ${date} — ${type}: ${formatHours(hours)} (${range}) <button class="undo-btn">Undo</button>`;
       const undoBtn = entry.querySelector(".undo-btn");
       undoBtn.addEventListener("click", () => undoEntry(entry, type, hours, key, range));
       logList.appendChild(entry);
