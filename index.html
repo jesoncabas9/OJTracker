@@ -298,8 +298,8 @@ function validateEmail(email) {
     }
 
     function isTimeInRange(time) {
-      const hour = parseInt(time.split(':')[0]);
-      return hour >= 7 && hour < 19;
+      const [hour, minute] = time.split(':').map(Number);
+      return (hour > 7 && hour < 19) || (hour === 7 && minute >= 0) || (hour === 19 && minute === 0);
     }
 
     function updateCellDisplayStatic(key, infoDiv, cell) {
