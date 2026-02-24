@@ -335,7 +335,9 @@ function validateEmail(email) {
     const sidebar = document.getElementById("sidebar");
     const title = document.getElementById("sidebarTitle");
     const logList = document.getElementById("logList");
-    title.textContent = `${month} ${date}, ${month === 'January' ? 2026 : 2025}`;
+    const monthIndex = months.indexOf(month);
+    const year = monthIndex >= 4 ? 2026 : 2025;
+    title.textContent = `${month} ${date}, ${year}`;
     
   
     sidebar.classList.add("open");
