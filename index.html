@@ -245,7 +245,8 @@ function validateEmail(email) {
       months.forEach((month, index) => {
         const monthDiv = document.createElement("div");
         monthDiv.className = "month";
-        monthDiv.innerHTML = `<h2>${month} ${month === 'January' ? 2026 : 2025}</h2>`;
+        const year = index >= 4 ? 2026 : 2025;
+        monthDiv.innerHTML = `<h2>${month} ${year}</h2>`;
         const table = document.createElement("table");
         const header = document.createElement("tr");
         header.innerHTML = "<th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>";
