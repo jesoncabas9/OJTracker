@@ -8,75 +8,74 @@
   <link rel="icon" href="Logo.png" type="image/x-icon">
 </head>
 <body>
-  
-<div id="authContainer" style="text-align: center; padding: 20px;">
-  <div id="loginForm">
-    <h2>Login or Register</h2>
-    <div style="max-width: 300px; margin: 0 auto;">
-      <input type="email" id="email" placeholder="Email" style="width: 90%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px;">
-      <input type="password" id="password" placeholder="Password" style="width: 90%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px;">
-      <button onclick="login()" style="width: 90%; padding: 10px; background: #1e90ff; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 5px 0;">Login</button>
-      <button onclick="register()" style="width: 90%; padding: 10px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 5px 0;">Register</button>
-    </div>
-  </div>
-  <div id="userInfo" style="display: none;">
-    <p>Logged in as: <span id="userEmail"></span></p>
-    <button onclick="logout()" style="padding: 8px 16px; background: #ff4c4c; color: white; border: none; border-radius: 6px; cursor: pointer;">Logout</button>
-  </div>
-</div>
 
-
-<div id="appContent" style="display: none;">
-  <h1>OJT Hours Tracker - September 2025 to January 2026</h1>
-  <div class="calendar-container" id="calendar"></div>
-
-  <div class="summary">
-    <h3>Total Hours Planned: <span id="plannedTotal">0</span></h3>
-    <h3>Total Hours Rendered: <span id="rendered">0</span></h3>
-    <h3>Remaining Hours (out of 240): <span id="remaining">240</span></h3>
-  </div>
-
-  
-  <div class="sidebar" id="sidebar">
-    <h2 id="sidebarTitle">Select Hours</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-      <div>
-        <h3>Planned</h3>
-        <label>Start Time:</label>
-        <input type="time" id="plannedStart" min="07:00" max="19:00" required>
-        <label>End Time:</label>
-        <input type="time" id="plannedEnd" min="07:00" max="19:00" required>
-        <button id="savePlanned">Save Planned</button>
-      </div>
-      <div>
-        <h3>Rendered</h3>
-        <label>Start Time:</label>
-        <input type="time" id="renderedStart" min="07:00" max="19:00" required>
-        <label>End Time:</label>
-        <input type="time" id="renderedEnd" min="07:00" max="19:00" required>
-        <button id="saveRendered">Save Rendered</button>
+  <div id="authContainer" style="text-align: center; padding: 20px;">
+    <div id="loginForm">
+      <h2>Login or Register</h2>
+      <div style="max-width: 300px; margin: 0 auto;">
+        <input type="email" id="email" placeholder="Email" style="width: 90%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="password" id="password" placeholder="Password" style="width: 90%; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px;">
+        <button onclick="login()" style="width: 90%; padding: 10px; background: #1e90ff; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 5px 0;">Login</button>
+        <button onclick="register()" style="width: 90%; padding: 10px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; margin: 5px 0;">Register</button>
       </div>
     </div>
-    <div class="log-list" id="logList">
-      <h3>Saved Entries</h3>
-    </div>
-  
-    <div style="margin-top: 20px;">
-      <h3>Notes</h3>
-      <textarea id="dayNote" placeholder="Add a note for this day..." style="width: 100%; height: 100px; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
-      <button id="saveNote">Save Note</button>
+    <div id="userInfo" style="display: none;">
+      <p>Logged in as: <span id="userEmail"></span></p>
+      <button onclick="logout()" style="padding: 8px 16px; background: #ff4c4c; color: white; border: none; border-radius: 6px; cursor: pointer;">Logout</button>
     </div>
   </div>
 
- 
+  <div id="appContent" style="display: none;">
+    <h1>OJT Hours Tracker - September 2025 to May 2026</h1>
+    <div class="calendar-container" id="calendar"></div>
+    <div style="margin:20px 0; text-align:center;">
+    <label style="margin-right:8px;"><b>Required OJT Hours:</b></label>
+    <input type="number" id="maxHoursInput" min="1" placeholder="Enter hours" style="padding:6px;">
+    <button onclick="setMaxHours()" style="padding:6px 10px;">Set</button>
+    </div>
+    <div class="summary">
+      <h3>Total Hours Planned: <span id="plannedTotal">0</span></h3>
+      <h3>Total Hours Rendered: <span id="rendered">0</span></h3>
+      <h3>Remaining Hours: <span id="remaining">240</span></h3>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+      <h2 id="sidebarTitle">Select Hours</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <h3>Planned</h3>
+          <label>Start Time:</label>
+          <input type="time" id="plannedStart" min="07:00" max="19:00" required>
+          <label>End Time:</label>
+          <input type="time" id="plannedEnd" min="07:00" max="19:00" required>
+          <button id="savePlanned">Save Planned</button>
+        </div>
+        <div>
+          <h3>Rendered</h3>
+          <label>Start Time:</label>
+          <input type="time" id="renderedStart" min="07:00" max="19:00" required>
+          <label>End Time:</label>
+          <input type="time" id="renderedEnd" min="07:00" max="19:00" required>
+          <button id="saveRendered">Save Rendered</button>
+        </div>
+      </div>
+      <div class="log-list" id="logList">
+        <h3>Saved Entries</h3>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3>Notes</h3>
+        <textarea id="dayNote" placeholder="Add a note for this day..." style="width: 100%; height: 100px; padding: 8px; margin: 5px 0; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+        <button id="saveNote">Save Note</button>
+      </div>
+    </div>
+  </div>
+
   <script type="module">
-    
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getDatabase, ref, set, get, update } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } 
-from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-   
     const firebaseConfig = {
       apiKey: "AIzaSyAAQpewSaDLFlsHPZQoVz7vFttby-tfOEg",
       authDomain: "ojttracker-42231.firebaseapp.com",
@@ -88,127 +87,102 @@ from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
       measurementId: "G-7VZWCG024J"
     };
 
-   
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const auth = getAuth(app);
     let currentUser = null;
 
-  const months = ["September", "October", "November", "December", "January","February", "March", "April", "May"];
-  const daysInMonth = [30, 31, 30, 31, 31 , 28, 31, 30, 31];
-  const startDays = [1, 3, 6, 1, 4, 0, 0, 3, 5];
+    const months = ["September", "October", "November", "December", "January", "February", "March", "April", "May"];
+    const daysInMonth = [30, 31, 30, 31, 31, 28, 31, 30, 31];
+    const startDays = [1, 3, 6, 1, 4, 0, 0, 3, 5];
     const calendarContainer = document.getElementById("calendar");
 
     let totalRendered = 0;
     let totalPlanned = 0;
-    const totalNeeded = 240;
+    let totalNeeded = 240;
     let activeCell = null;
     let dayRecords = {};
 
- 
-window.login = async () => {
-  const rawEmail = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const email = rawEmail.trim().toLowerCase();
+    window.login = async () => {
+      const rawEmail = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const email = rawEmail.trim().toLowerCase();
 
-  if (!validateEmail(email)) {
-    alert('Please enter a valid email address (e.g. user@example.com).');
-    return;
-  }
-  if (!password || password.length < 6) {
-    alert('Password must be at least 6 characters.');
-    return;
-  }
+      if (!validateEmail(email)) {
+        alert('Please enter a valid email address (e.g. user@example.com).');
+        return;
+      }
+      if (!password || password.length < 6) {
+        alert('Password must be at least 6 characters.');
+        return;
+      }
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    let msg;
-    switch (error.code) {
-      case 'auth/invalid-email':
-        msg = 'Invalid email format.';
-        break;
-      case 'auth/user-not-found':
-        msg = 'No account found with that email.';
-        break;
-      case 'auth/wrong-password':
-        msg = 'Incorrect password.';
-        break;
-      case 'auth/user-disabled':
-        msg = 'This account has been disabled.';
-        break;
-      default:
-        msg = error.message || 'Login failed.';
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        let msg;
+        switch (error.code) {
+          case 'auth/invalid-email': msg = 'Invalid email format.'; break;
+          case 'auth/user-not-found': msg = 'No account found with that email.'; break;
+          case 'auth/wrong-password': msg = 'Incorrect password.'; break;
+          case 'auth/user-disabled': msg = 'This account has been disabled.'; break;
+          default: msg = error.message || 'Login failed.';
+        }
+        alert('Login failed: ' + msg);
+      }
+    };
+
+    window.register = async () => {
+      const rawEmail = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const cleaned = rawEmail.replace(/[\u200B\uFEFF\u00A0]/g, '');
+      const email = cleaned.trim().toLowerCase();
+
+      if (!email) {
+        alert('Please enter an email address.');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        console.log('Register: invalid email input', { rawEmail, cleaned, email, charCodes: Array.from(rawEmail).map(c => c.charCodeAt(0)) });
+        alert('Please enter a valid email address (e.g. user@example.com).');
+        return;
+      }
+      if (!password || password.length < 6) {
+        alert('Password must be at least 6 characters.');
+        return;
+      }
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        let msg;
+        switch (error.code) {
+          case 'auth/invalid-email': msg = 'Invalid email format.'; break;
+          case 'auth/email-already-in-use': msg = 'An account with this email already exists.'; break;
+          case 'auth/weak-password': msg = 'Password is too weak.'; break;
+          default: msg = error.message || 'Registration failed.';
+        }
+        alert('Registration failed: ' + msg);
+      }
+    };
+
+    window.logout = async () => {
+      try {
+        await signOut(auth);
+        alert('Logged out successfully.');
+      } catch (error) {
+        console.error('Logout failed:', error);
+        alert('Failed to logout. Try again.');
+      }
+    };
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
-    alert('Login failed: ' + msg);
-  }
-  };
-
-window.register = async () => {
-  const rawEmail = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
- 
-  const cleaned = rawEmail.replace(/[\u200B\uFEFF\u00A0]/g, '');
-  const email = cleaned.trim().toLowerCase();
-
-  if (!email) {
-    alert('Please enter an email address.');
-    return;
-  }
-
-  if (!validateEmail(email)) {
-    
-    console.log('Register: invalid email input', { rawEmail, cleaned, email, charCodes: Array.from(rawEmail).map(c => c.charCodeAt(0)) });
-    alert('Please enter a valid email address (e.g. user@example.com).\n(Details were logged to the browser console for debugging.)');
-    return;
-  }
-  if (!password || password.length < 6) {
-    alert('Password must be at least 6 characters.');
-    return;
-  }
-
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    let msg;
-    switch (error.code) {
-      case 'auth/invalid-email':
-        msg = 'Invalid email format.';
-        break;
-      case 'auth/email-already-in-use':
-        msg = 'An account with this email already exists.';
-        break;
-      case 'auth/weak-password':
-        msg = 'Password is too weak.';
-        break;
-      default:
-        msg = error.message || 'Registration failed.';
-    }
-    alert('Registration failed: ' + msg);
-  }
-};
-
-window.logout = async () => {
-  try {
-    await signOut(auth);
-
-    alert('Logged out successfully.');
-  } catch (error) {
-    console.error('Logout failed:', error);
-    alert('Failed to logout. Try again.');
-  }
-};
-
-
-function validateEmail(email) {
- 
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
 
     async function loadFromFirebase() {
       if (!currentUser) return;
-      
       const userRef = ref(db, `users/${currentUser.uid}`);
       const snapshot = await get(userRef);
       if (snapshot.exists()) {
@@ -222,7 +196,6 @@ function validateEmail(email) {
 
     async function saveToFirebase() {
       if (!currentUser) return;
-      
       await set(ref(db, `users/${currentUser.uid}`), {
         dayRecords,
         totals: {
@@ -235,10 +208,10 @@ function validateEmail(email) {
     function updateSummary() {
       document.getElementById("plannedTotal").textContent = formatHours(totalPlanned);
       document.getElementById("rendered").textContent = formatHours(totalRendered);
-      document.getElementById("remaining").textContent = formatHours(Math.max(totalNeeded - totalRendered, 0));
+      document.getElementById("remaining").textContent =
+        formatHours(Math.max(totalNeeded - totalRendered, 0)) + " (out of " + totalNeeded + "h)";
     }
 
-   
     async function buildCalendar() {
       await loadFromFirebase();
       calendarContainer.innerHTML = "";
@@ -311,55 +284,46 @@ function validateEmail(email) {
       if (rec.planned > 0) cell.classList.add("planned");
       if (rec.rendered > 0) cell.classList.add("rendered");
       if (rec.note) {
-        const noteIcon = "📝";
-        infoDiv.innerHTML += `<br>${noteIcon}`;
+        infoDiv.innerHTML += `<br>📝`;
       }
     }
 
-   
     const overlay = document.createElement('div');
     overlay.classList.add('sidebar-overlay');
     document.body.appendChild(overlay);
-
-   
     overlay.addEventListener('click', closeSidebar);
 
     function closeSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.remove('open');
-    overlay.classList.remove('active');
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
     }
 
     function openSidebar(cell, infoDiv, month, date, key) {
-    activeCell = { cell, infoDiv, month, date, key };
-    const sidebar = document.getElementById("sidebar");
-    const title = document.getElementById("sidebarTitle");
-    const logList = document.getElementById("logList");
-    const monthIndex = months.indexOf(month);
-    const year = monthIndex >= 4 ? 2026 : 2025;
-    title.textContent = `${month} ${date}, ${year}`;
-    
-  
-    sidebar.classList.add("open");
-    overlay.classList.add("active");
-    
-    logList.innerHTML = "<h3>Saved Entries</h3>";
-    
-    const rec = dayRecords[key];
-    if (!rec.logs) {
-        rec.logs = [];
-    }
-    
-    rec.logs.forEach(html => {
+      activeCell = { cell, infoDiv, month, date, key };
+      const sidebar = document.getElementById("sidebar");
+      const title = document.getElementById("sidebarTitle");
+      const logList = document.getElementById("logList");
+      const monthIndex = months.indexOf(month);
+      const year = monthIndex >= 4 ? 2026 : 2025;
+      title.textContent = `${month} ${date}, ${year}`;
+
+      sidebar.classList.add("open");
+      overlay.classList.add("active");
+
+      logList.innerHTML = "<h3>Saved Entries</h3>";
+      const rec = dayRecords[key];
+      if (!rec.logs) rec.logs = [];
+
+      rec.logs.forEach(html => {
         const temp = document.createElement("div");
         temp.innerHTML = html;
         const entry = temp.firstChild;
         const undoBtn = entry.querySelector(".undo-btn");
         undoBtn.addEventListener("click", () => undoEntry(entry, entry.dataset.type, parseFloat(entry.dataset.hours), key, entry.dataset.range));
         logList.appendChild(entry);
-    });
-    const noteTextarea = document.getElementById("dayNote");
-    noteTextarea.value = rec.note || '';
+      });
+      document.getElementById("dayNote").value = rec.note || '';
     }
 
     async function addLogEntry(type, hours, month, date, range, key) {
@@ -368,8 +332,8 @@ function validateEmail(email) {
       entry.className = "log-item";
       entry.dataset.type = type;
       entry.dataset.hours = hours;
-  entry.dataset.range = range;
-  entry.innerHTML = `${month} ${date} — ${type}: ${formatHours(hours)} (${range}) <button class="undo-btn">Undo</button>`;
+      entry.dataset.range = range;
+      entry.innerHTML = `${month} ${date} — ${type}: ${formatHours(hours)} (${range}) <button class="undo-btn">Undo</button>`;
       const undoBtn = entry.querySelector(".undo-btn");
       undoBtn.addEventListener("click", () => undoEntry(entry, type, hours, key, range));
       logList.appendChild(entry);
@@ -378,208 +342,127 @@ function validateEmail(email) {
     }
 
     async function undoEntry(entry, type, hours, key, range) {
-    const rec = dayRecords[key];
-    if (type === "Planned") {
+      const rec = dayRecords[key];
+      if (type === "Planned") {
         const idx = rec.plannedRanges.indexOf(range);
         if (idx !== -1) {
-        rec.plannedRanges.splice(idx, 1);
-        rec.planned -= hours;
-        totalPlanned -= hours;
-        
-        if (rec.plannedRanges.length === 0) {
-            activeCell.cell.classList.remove("planned");
+          rec.plannedRanges.splice(idx, 1);
+          rec.planned -= hours;
+          totalPlanned -= hours;
+          if (rec.plannedRanges.length === 0) activeCell.cell.classList.remove("planned");
         }
-        updateSummary();
-        }
-    } else {
+      } else {
         const idx = rec.renderedRanges.indexOf(range);
         if (idx !== -1) {
-        rec.renderedRanges.splice(idx, 1);
-        rec.rendered -= hours;
-        totalRendered -= hours;
-       
-        if (rec.renderedRanges.length === 0) {
-            activeCell.cell.classList.remove("rendered");
+          rec.renderedRanges.splice(idx, 1);
+          rec.rendered -= hours;
+          totalRendered -= hours;
+          if (rec.renderedRanges.length === 0) activeCell.cell.classList.remove("rendered");
         }
-        updateSummary();
-        }
-    }
-    
-    rec.logs = rec.logs.filter(html => !html.includes(range));
-    updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
-    entry.remove();
-    await saveToFirebase();
+      }
+      rec.logs = rec.logs.filter(html => !html.includes(range));
+      updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
+      entry.remove();
+      updateSummary();
+      await saveToFirebase();
     }
 
-    
     document.getElementById("savePlanned").addEventListener("click", async () => {
       const start = document.getElementById("plannedStart").value;
       const end = document.getElementById("plannedEnd").value;
-
-     
       if (!isTimeInRange(start) || !isTimeInRange(end)) {
-        alert("Please select times between 7:00 AM and 7:00 PM (OJT hours range)");
+        alert("Please select times between 7:00 AM and 7:00 PM");
         return;
       }
-
       const hours = calculateHours(start, end);
       const range = `${start}–${end}`;
-      
       if (activeCell && hours > 0) {
-          const key = activeCell.key;
-          
-          
-          if (!dayRecords[key]) {
-          dayRecords[key] = {
-              planned: 0,
-              rendered: 0,
-              plannedRanges: [],
-              renderedRanges: [],
-              logs: [],
-              note: ''
-          };
-          }
-          
-          
-          if (!dayRecords[key].plannedRanges) {
-          dayRecords[key].plannedRanges = [];
-          }
-          if (!dayRecords[key].logs) {
-          dayRecords[key].logs = [];
-          }
-          
-          
-          if (dayRecords[key].plannedRanges.includes(range)) {
-          alert("This planned time range already exists for this date!");
+        const key = activeCell.key;
+        if (!dayRecords[key]) {
+          dayRecords[key] = { planned: 0, rendered: 0, plannedRanges: [], renderedRanges: [], logs: [], note: '' };
+        }
+        if (dayRecords[key].plannedRanges.includes(range)) {
+          alert("Range already exists!");
           return;
-          }
-          
-          dayRecords[key].planned = (dayRecords[key].planned || 0) + hours;
-          dayRecords[key].plannedRanges.push(range);
-          totalPlanned += hours;
-          activeCell.cell.classList.add("planned");
-          updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
-          await addLogEntry("Planned", hours, activeCell.month, activeCell.date, range, key);
-          updateSummary();
+        }
+        dayRecords[key].planned += hours;
+        dayRecords[key].plannedRanges.push(range);
+        totalPlanned += hours;
+        activeCell.cell.classList.add("planned");
+        updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
+        await addLogEntry("Planned", hours, activeCell.month, activeCell.date, range, key);
+        updateSummary();
       }
-      });
+    });
 
     document.getElementById("saveRendered").addEventListener("click", async () => {
       const start = document.getElementById("renderedStart").value;
       const end = document.getElementById("renderedEnd").value;
-
-      
       if (!isTimeInRange(start) || !isTimeInRange(end)) {
-        alert("Please select times between 7:00 AM and 7:00 PM (OJT hours range)");
+        alert("Please select times between 7:00 AM and 7:00 PM");
         return;
       }
-
       const hours = calculateHours(start, end);
       const range = `${start}–${end}`;
-      
       if (activeCell && hours > 0) {
-          const key = activeCell.key;
-          
-          
-          if (!dayRecords[key]) {
-          dayRecords[key] = {
-              planned: 0,
-              rendered: 0,
-              plannedRanges: [],
-              renderedRanges: [],
-              logs: [],
-              note: ''
-          };
-          }
-          
-         
-          if (!dayRecords[key].renderedRanges) {
-          dayRecords[key].renderedRanges = [];
-          }
-          if (!dayRecords[key].logs) {
-          dayRecords[key].logs = [];
-          }
-          
-          
-          if (dayRecords[key].renderedRanges.includes(range)) {
-          alert("This rendered time range already exists for this date!");
+        const key = activeCell.key;
+        if (!dayRecords[key]) {
+          dayRecords[key] = { planned: 0, rendered: 0, plannedRanges: [], renderedRanges: [], logs: [], note: '' };
+        }
+        if (dayRecords[key].renderedRanges.includes(range)) {
+          alert("Range already exists!");
           return;
-          }
-          
-        
-          dayRecords[key].rendered = (dayRecords[key].rendered || 0) + hours;
-          dayRecords[key].renderedRanges.push(range);
-          totalRendered += hours;
-          activeCell.cell.classList.add("rendered");
-          updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
-          await addLogEntry("Rendered", hours, activeCell.month, activeCell.date, range, key);
-          updateSummary();
+        }
+        dayRecords[key].rendered += hours;
+        dayRecords[key].renderedRanges.push(range);
+        totalRendered += hours;
+        activeCell.cell.classList.add("rendered");
+        updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
+        await addLogEntry("Rendered", hours, activeCell.month, activeCell.date, range, key);
+        updateSummary();
       }
-      });
+    });
 
     document.getElementById("saveNote").addEventListener("click", async () => {
       if (activeCell) {
         const key = activeCell.key;
         const noteText = document.getElementById("dayNote").value.trim();
-        
         if (!dayRecords[key]) {
-          dayRecords[key] = {
-            planned: 0,
-            rendered: 0,
-            plannedRanges: [],
-            renderedRanges: [],
-            logs: [],
-            note: ''
-          };
+          dayRecords[key] = { planned: 0, rendered: 0, plannedRanges: [], renderedRanges: [], logs: [], note: '' };
         }
-        
         dayRecords[key].note = noteText;
         updateCellDisplayStatic(key, activeCell.infoDiv, activeCell.cell);
         await saveToFirebase();
       }
     });
 
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        currentUser = user;
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("userInfo").style.display = "block";
+        document.getElementById("userEmail").textContent = user.email;
+        document.getElementById("appContent").style.display = "block";
+        await buildCalendar();
+      } else {
+        currentUser = null;
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("userInfo").style.display = "none";
+        document.getElementById("appContent").style.display = "none";
+        calendarContainer.innerHTML = "";
+        dayRecords = {};
+        totalRendered = 0;
+        totalPlanned = 0;
+      }
+    });
 
-function toggleAuthElements(loggedIn) {
-  const loginForm = document.getElementById("loginForm");
-  const userInfo = document.getElementById("userInfo");
-  const appContent = document.getElementById("appContent");
-
-  if (loggedIn) {
-    loginForm.style.display = "none";
-    userInfo.style.display = "block";
-    appContent.style.display = "block"; 
-  } else {
-    loginForm.style.display = "block";
-    userInfo.style.display = "none";
-    appContent.style.display = "none"; 
-  }
-}
-
-
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    currentUser = user;
-    document.getElementById("loginForm").style.display = "none";
-    document.getElementById("userInfo").style.display = "block";
-    document.getElementById("userEmail").textContent = user.email;
-    document.getElementById("appContent").style.display = "block";
-
-   
-    document.getElementById("calendar").innerHTML = "";
-    await buildCalendar();
-  } else {
-    currentUser = null;
-    document.getElementById("loginForm").style.display = "block";
-    document.getElementById("userInfo").style.display = "none";
-    document.getElementById("appContent").style.display = "none";
-    document.getElementById("calendar").innerHTML = "";
-
-    dayRecords = {};
-    totalRendered = 0;
-    totalPlanned = 0;
-  }
-});
+    window.setMaxHours = async function () {
+      const input = document.getElementById("maxHoursInput").value;
+      if (!input || input <= 0) return;
+      totalNeeded = parseInt(input);
+      updateSummary();
+      if (currentUser) await saveToFirebase();
+    };
 
     buildCalendar();
   </script>
